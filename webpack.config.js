@@ -11,15 +11,21 @@ module.exports = {
         path: distFolder,
         filename: '[name].bundle.js'
     },
+    mode: 'development',
+    devServer: {
+        contentBase: path.join(__dirname, "dist"),
+        compress: true,
+        port: 9000
+    },
     module: {
         rules: [
             {
-                test: /\.jsx?$/,
+                test: /\.js$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel-loader'
             },
             {
-                test: /\.tsx?$/,
+                test: /\.ts$/,
                 loader: 'ts-loader'
             },
             {
@@ -64,14 +70,14 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(['dist']),
-        // new CopyWebpackPlugin([
-        //     {
-        //         from: 'src/assets',
-        //         to: distFolder + '/assets'
-        //     }
-        // ]),
+        new CopyWebpackPlugin([
+            {
+                from: 'src/assets',
+                to: distFolder + '/assets'
+            }
+        ]),
         new HtmlWebpackPlugin({
-            template: './src/index.html',
+            template: './index.html',
             title: 'Development'
         })
     ]
