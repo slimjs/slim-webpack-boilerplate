@@ -10,13 +10,17 @@ class PopupModal extends Slim {
 
   close () {
     this.style.display = 'none'
+    const backdrop = this.find('#backdrop')
+    const content = this.find('#content')
+    backdrop.style.opacity = content.style.opacity = 0
+    content.style.top = null
   }
 
   open () {
     this.style.display = 'flex'
     setTimeout( () => {
       const backdrop = this.find('#backdrop')
-      const content = this.find('#content')
+      const content = this.find('.content')
       content.style.opacity = backdrop.style.opacity = 1
       content.style.top = '0'
     }, 10)

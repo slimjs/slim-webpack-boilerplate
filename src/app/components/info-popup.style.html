@@ -1,4 +1,52 @@
 <style>
+  :host {
+    font-size: 0.6rem;
+  }
+
+  #comparison * {
+    font-size: 0.5rem;
+  }
+
+  #comparison thead {
+    padding-top: 0.3px;
+    padding-bottom: 0.3px;
+    text-align: left;
+    background-color: #f15924;
+    color: white;
+  }
+
+  #comparison tr:nth-child(even) {
+    background-color: #ffe0d5;
+  }
+
+  #comparison {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  #comparison ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  #comparison, #comparison th, #comparison td {
+    border: 1px solid lightgray;
+    padding: 0.2rem;
+  }
+
+  #comparison .data-binding-info {
+    text-align: center;
+  }
+
+  #comparison .rating {
+    font-size: 0.7rem;
+    letter-spacing: -3px;
+  }
+
+  p {
+    line-height: 1.1rem;
+  }
+
 @media (max-width: 760px) {
 
   /* Force table to not be like tables anymore */

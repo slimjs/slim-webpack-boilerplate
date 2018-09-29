@@ -4,6 +4,8 @@ import { tag, template, useShadow } from 'slim-js/Decorators'
 // Slim.js plugin to invoke shady-css on components
 import '../helpers/shady-css.js'
 
+import 'slim-js/directives/all.js'
+
 // import custom elements
 import './components/header/header.js'
 import './components/heart-beat.js'
@@ -40,7 +42,6 @@ class App extends Slim {
     } else {
       this.style.opacity = null
     }
-    this.triggerWhyPopup()
   }
 
   async onCreated () {
@@ -57,7 +58,11 @@ class App extends Slim {
     window.location.href = url
   }
 
-  triggerWhyPopup () {
+  closeModal () {
+    this.modal.close()
+  }
+
+  openModal () {
     this.modal.open()
   }
 }

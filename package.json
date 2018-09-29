@@ -4,8 +4,8 @@
   "description": "Slim.js webpack boilerplate.",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "start": "webpack-dev-server --watch --progress --colors --config webpack.config.js",
+    "build": "NODE_ENV=production webpack",
+    "start": "webpack-dev-server --watch --progress --colors --config webpack.config.js --host 0.0.0.0",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -47,6 +47,6 @@
     "webpack-dev-server": "^3.1.8"
   },
   "dependencies": {
-    "slim-js": "^4.0.0-beta-3"
+    "slim-js": "^4.0.1"
   }
 }

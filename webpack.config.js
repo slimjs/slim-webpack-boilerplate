@@ -5,13 +5,15 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const distFolder = path.resolve(__dirname, 'dist')
 
+const isProduction = process.env.NODE_ENV === 'production'
+
 module.exports = {
     entry: './src/index.js',
     output: {
         path: distFolder,
         filename: '[name].bundle.js'
     },
-    mode: 'development',
+    mode: isProduction ? 'production' : 'development',
     devServer: {
         contentBase: path.join(__dirname, "dist"),
         compress: true,
@@ -62,23 +64,34 @@ module.exports = {
             }
         ]
     },
-    devtool: 'source-map',
+    devtool: isProduction ? undefined : 'source-map',
     target: 'web',
     stats: 'errors-only',
     devServer: {
         contentBase: './dist'
     },
     plugins: [
-        new CleanWebpackPlugin(['dist']),
+        new CleanWebpackPlugin([distFolder]),
         new CopyWebpackPlugin([
             {
                 from: 'src/assets',
                 to: distFolder + '/assets'
+            },
+            {
+                from: 'manifest.json',
+                to: distFolder
+            },
+            {
+                from: 'sw.js',
+                to: distFolder
+            },
+            {
+                from: 'icons',
+                to: distFolder + '/icons'
             }
         ]),
         new HtmlWebpackPlugin({
-            template: './index.html',
-            title: 'Development'
+            template: './index.html'
         })
     ]
 }

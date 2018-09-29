@@ -1,4 +1,10 @@
 <style>
+  @media (max-width: 760px) {
+    ::slotted(button), ::slotted(input[type="button"]) {
+    flex-basis: 100% !important;
+    }
+  }
+
   :host {
     display: none;
     position: fixed;
@@ -25,7 +31,7 @@
     transition: 0.3s ease-in all;
   }
 
-  #content {
+  .content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -65,7 +71,7 @@
 
 <div s:id="backdrop" id="backdrop">
 </div>
-<div id="content">
+<div class="content">
   <div id="content-wrapper"><slot></slot></div>
   <div id="actions-wrapper">
     <slot name="actions"></slot>

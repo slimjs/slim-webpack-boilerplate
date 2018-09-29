@@ -2,12 +2,15 @@
   :host button {
     cursor: pointer;
   }
+  pre {
+    margin-top: 2rem;
+    text-align: center;
+  }
 </style>
 
 <popup-modal s:id="modal">
   <info-popup></info-popup>
-  <button slot="actions">Action Here</button>
-  <button slot="actions">Action Here</button>
+  <button slot="actions" click="closeModal">Awesome!</button>
 </popup-modal>
 
 <background-video src="../../../assets/bgvideo.mp4"></background-video>
@@ -16,7 +19,7 @@
 </div>
 <div class="text">
   <button-array>
-    <button click="triggerWhyPopup">
+    <button click="openModal">
       Why slim.js
     </button>
     <button click="redirect" target="http://slimjs.com">
@@ -41,6 +44,7 @@
         <p>Less than 5Kb, and you have the powers of a framework. One file and your'e good to go.</p>
       </div>
     </div>
+    <pre><code>$ npm install slim-js</code></pre>
     <h3>With slim.js you can</h3>
     <ul>
       <li>Create components that seamlessly interop with any framework or tool</li>

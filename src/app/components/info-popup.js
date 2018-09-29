@@ -4,52 +4,6 @@ import { tag, template, useShadow } from "slim-js/Decorators";
 @useShadow(true)
 @template(/*html*/`
 ${require('./info-popup.style.html')}
-<style>
-
-  :host {
-    font-size: 0.6rem;
-  }
-
-  #comparison * {
-    font-size: 0.5rem;
-  }
-
-  #comparison thead {
-    padding-top: 0.3px;
-    padding-bottom: 0.3px;
-    text-align: left;
-    background-color: #f15924;
-    color: white;
-  }
-
-  #comparison tr:nth-child(even) {
-    background-color: #ffe0d5;
-  }
-
-  #comparison {
-    border-collapse: collapse;
-    width: 100%;
-  }
-
-  #comparison ul {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  #comparison, #comparison th, #comparison td {
-    border: 1px solid lightgray;
-    padding: 0.2rem;
-  }
-
-  #comparison .data-binding-info {
-    text-align: center;
-  }
-
-  #comparison .rating {
-    font-size: 0.7rem;
-    letter-spacing: -3px;
-  }
-</style>
 <h3>Comparison</h3>
   <p>Slim.js has just the right balance between being feature-rich and lightweight. It has a small learning-curve, high performance, less memory footprint and supported by all evergreen browsers.</p>
   <table id="comparison">
