@@ -5,21 +5,33 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const distFolder = path.resolve(__dirname, 'dist')
 
+const isProduction = process.env.NODE_ENV === 'production'
+
 module.exports = {
     entry: './src/index.js',
     output: {
         path: distFolder,
         filename: '[name].bundle.js'
     },
+
+    // if NODE_ENV is set to "production" webpack will also minify the files
+    mode: isProduction ? 'production' : 'development',
+
+    devServer: {
+        contentBase: path.join(__dirname, "dist"),
+        compress: true,
+        port: 9000
+    },
+
     module: {
         rules: [
             {
-                test: /\.jsx?$/,
+                test: /\.js$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel-loader'
             },
             {
-                test: /\.tsx?$/,
+                test: /\.ts$/,
                 loader: 'ts-loader'
             },
             {
@@ -56,23 +68,35 @@ module.exports = {
             }
         ]
     },
-    devtool: 'source-map',
+
+    // no source maps for production
+    devtool: isProduction ? undefined : 'source-map',
+
     target: 'web',
     stats: 'errors-only',
-    devServer: {
-        contentBase: './dist'
-    },
+
     plugins: [
-        new CleanWebpackPlugin(['dist']),
-        // new CopyWebpackPlugin([
-        //     {
-        //         from: 'src/assets',
-        //         to: distFolder + '/assets'
-        //     }
-        // ]),
+        new CleanWebpackPlugin([distFolder]),
+        new CopyWebpackPlugin([
+            {
+                from: 'src/assets',
+                to: distFolder + '/assets'
+            },
+            {
+                from: 'manifest.json',
+                to: distFolder
+            },
+            {
+                from: 'sw.js',
+                to: distFolder
+            },
+            {
+                from: 'icons',
+                to: distFolder + '/icons'
+            }
+        ]),
         new HtmlWebpackPlugin({
-            template: './src/index.html',
-            title: 'Development'
+            template: './index.html'
         })
     ]
 }
