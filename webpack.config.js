@@ -13,12 +13,16 @@ module.exports = {
         path: distFolder,
         filename: '[name].bundle.js'
     },
+
+    // if NODE_ENV is set to "production" webpack will also minify the files
     mode: isProduction ? 'production' : 'development',
+
     devServer: {
         contentBase: path.join(__dirname, "dist"),
         compress: true,
         port: 9000
     },
+
     module: {
         rules: [
             {
@@ -64,12 +68,13 @@ module.exports = {
             }
         ]
     },
+
+    // no source maps for production
     devtool: isProduction ? undefined : 'source-map',
+
     target: 'web',
     stats: 'errors-only',
-    devServer: {
-        contentBase: './dist'
-    },
+
     plugins: [
         new CleanWebpackPlugin([distFolder]),
         new CopyWebpackPlugin([
